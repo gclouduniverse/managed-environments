@@ -26,11 +26,11 @@ steps:
   args:
     - -c # use "breakout syntax" to run bash commands directly
     - |
-    gcloud beta notebooks environments describe --location=us-central1-a chernikov-environment
-    if [ $? -eq 0 ]
-    then
-      echo "The environment already exists"
-    else
-      gcloud beta notebooks environments create chernikov-environment --location=us-central1-a --container-repository=gcr.io/chernikov-playground/custom-tf-115 --container-tag=latest --description="custom TF 1.15" --display-name=custom-tf-115
-    fi
-    EOF
+      gcloud beta notebooks environments describe --location=us-central1-a chernikov-environment
+      if [ $? -eq 0 ]
+      then
+        echo "The environment already exists"
+      else
+        gcloud beta notebooks environments create chernikov-environment --location=us-central1-a --container-repository=gcr.io/chernikov-playground/custom-tf-115 --container-tag=latest --description="custom TF 1.15" --display-name=custom-tf-115
+      fi
+      EOF
