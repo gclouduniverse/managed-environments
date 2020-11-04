@@ -12,7 +12,7 @@ steps:
 
 - name: docker.io/library/python:3.7
   id: 'test-image'
-  args: ['bash', '-c', 'pip install gcloud-notebook-training && ls *.ipynb | xargs -I {} gcloud-notebook-training --input-notebook {} --container-uri gcr.io/deeplearning-platform-release/tf-gpu.1-15']
+  args: ['bash', '-c', 'pip install gcloud-notebook-training && ls *.ipynb | xargs -I {} gcloud-notebook-training --input-notebook {} --container-uri gcr.io/$PROJECT_ID/custom-tf-115-staging']
   dir: 'test_notebooks'
   timeout: 7200s
 
