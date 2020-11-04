@@ -10,7 +10,7 @@ steps:
   id: 'stage-image'
   args: ['push', 'gcr.io/chernikov-playground/custom-tf-115-staging']
 
-- name: 'docker.io/library/python:3.7'
+- name: docker.io/library/python:3.7
   id: 'test-image'
   args: ['bash', '-c', 'pip install gcloud-notebook-training && ls *.ipynb | xargs -I {} gcloud-notebook-training --input-notebook {} --container-uri gcr.io/deeplearning-platform-release/tf-gpu.1-15']
   dir: 'test_notebooks'
@@ -19,3 +19,18 @@ steps:
 - name: gcr.io/cloud-builders/docker
   id: 'push-production-image'
   args: ['push', 'gcr.io/chernikov-playground/custom-tf-115']
+
+- name: gcr.io/cloud-builders/gcloud
+  id: 'update-environment'
+  entrypoint: /bin/bash
+  args:
+    - -c # use "breakout syntax" to run bash commands directly
+    - |
+    gcloud beta notebooks environments describe --location=us-central1-a chernikov-environment
+    if [ $? -eq 0 ]
+    then
+      echo "The environment already exists"
+    else
+      gcloud beta notebooks environments create chernikov-environment --location=us-central1-a --container-repository=gcr.io/chernikov-playground/custom-tf-115 --container-tag=latest --description="custom TF 1.15" --display-name=custom-tf-115
+    fi
+    EOF
