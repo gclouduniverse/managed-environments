@@ -1,0 +1,21 @@
+timeout: 3600s
+steps:
+
+- name: gcr.io/cloud-builders/docker
+  id: 'build-image'
+  args: ['build', '-t', 'gcr.io/chernikov-playground/custom-tf-115-staging', '-t', 'gcr.io/chernikov-playground/custom-tf-115', '.']
+  timeout: 1200s
+
+- name: gcr.io/cloud-builders/docker
+  id: 'stage-image'
+  args: ['push', 'gcr.io/chernikov-playground/custom-tf-115-staging']
+
+- name: 'docker.io/library/python:3.7'
+  id: 'train'
+  args: ['bash', '-c', 'pip install gcloud-notebook-training && ls *.ipynb | xargs -I {} gcloud-notebook-training --input-notebook {} --container-uri gcr.io/deeplearning-platform-release/tf-gpu.1-15']
+  dir: 'test_notebooks'
+  timeout: 7200s
+
+- name: gcr.io/cloud-builders/docker
+  id: 'stage-image'
+  args: ['push', 'gcr.io/chernikov-playground/custom-tf-115']
