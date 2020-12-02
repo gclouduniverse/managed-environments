@@ -24,7 +24,7 @@ steps:
   id: 'update-environment'
   entrypoint: /bin/bash
   args:
-    - -c # use "breakout syntax" to run bash commands directly
+    - -c+e # use "breakout syntax" to run bash commands directly
     - |
       gcloud beta notebooks environments describe --location=us-central1-a chernikov-environment
       if [ $? -eq 0 ]
