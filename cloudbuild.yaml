@@ -34,4 +34,3 @@ steps:
       else
         gcloud beta notebooks environments create chernikov-environment --location=us-central1-a --container-repository=gcr.io/$PROJECT_ID/custom-tf-115 --container-tag=latest --description="custom TF 1.15" --display-name=custom-tf-115
       fi
-      EOF
