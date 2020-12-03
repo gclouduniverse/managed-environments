@@ -24,9 +24,10 @@ steps:
   id: 'update-environment'
   entrypoint: /bin/bash
   args:
-    - -c+e # use "breakout syntax" to run bash commands directly
+    - -c # use "breakout syntax" to run bash commands directly
     - |
-      gcloud beta notebooks environments describe --location=us-central1-a chernikov-environment
+      set +e
+      gcloud beta notebooks environments describe --location=us-central1-a chernikov-environment 2>&1 >/dev/null
       if [ $? -eq 0 ]
       then
         echo "The environment already exists"
