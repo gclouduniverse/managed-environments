@@ -10,18 +10,22 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License
+# limitations under the License.
 
-FROM gcr.io/deeplearning-platform-release/tf-gpu.1-15
+timeout: 3600s
 
-# Install Notebook Scheduler extension
-ARG EXTENSION_BUCKET="gs://deeplearning-platform-ui-public"
-ARG EXT="jupyterlab_gcpscheduler-latest.tar.gz"
-ARG URL="${EXTENSION_BUCKET}/${EXT}"
-RUN gsutil cp "${URL}" "/tmp/${EXT}"
-RUN pip install "/tmp/${EXT}"
+substitutions:
+  _IMAGE_NAME: team1.task1
 
-RUN jupyter lab build
+steps:
 
-# Install other dependencies
-RUN pip install --user --upgrade setuptools
+# After acceptance testing, changes are pushed to the master branch.
+# Publish image in a notebook PROD environment for general use.
+- name: gcr.io/cloud-builders/gcloud
+  id: 'publish-prod-image'
+  entrypoint: /bin/bash
+  args: [ './publish-prod-env.sh']
+  env:
+  - 'LOCATION=us-central1-a'
+  - 'IMAGE_NAME=${_IMAGE_NAME}'
+  - 'PROJECT_ID=${PROJECT_ID}'
