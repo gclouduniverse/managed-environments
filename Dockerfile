@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License
 
-FROM gcr.io/deeplearning-platform-release/tf-gpu.1-15
+FROM gcr.io/deeplearning-platform-release/tf2-gpu.2-4
 
 # Install Notebook Scheduler extension
 ARG EXTENSION_BUCKET="gs://deeplearning-platform-ui-public"
