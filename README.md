@@ -9,5 +9,8 @@ The production docker image will be used by the environment.
 The following command can be used to create a notebook using this newly created environment:
 
 ```
-gcloud beta notebooks instances create --environment=YOUR_ENV_NAME --environment-location=YOUR_ENV_LOCATION --location=YOUR_LOCATION
+gcloud notebooks instances create \
+ --environment=YOUR_ENV_NAME \
+ --environment-location=YOUR_ENV_LOCATION \
+ --location=YOUR_LOCATION
 ```
