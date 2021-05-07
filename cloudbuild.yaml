@@ -27,10 +27,10 @@ steps:
     - -c # use "breakout syntax" to run bash commands directly
     - |
       set +e
-      gcloud beta notebooks environments describe --location=us-central1-a chernikov-environment 2>&1 >/dev/null
+      gcloud notebooks environments describe --location=us-central1-a chernikov-environment 2>&1 >/dev/null
       if [ $? -eq 0 ]
       then
         echo "The environment already exists"
       else
-        gcloud beta notebooks environments create chernikov-environment --location=us-central1-a --container-repository=gcr.io/$PROJECT_ID/custom-tf-115 --container-tag=latest --description="custom TF 1.15" --display-name=custom-tf-115
+        gcloud notebooks environments create chernikov-environment --location=us-central1-a --container-repository=gcr.io/$PROJECT_ID/custom-tf-115 --container-tag=latest --description="custom TF 1.15" --display-name=custom-tf-115
       fi
