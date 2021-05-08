@@ -17,7 +17,7 @@ Sample [Cloud Build][cloud-build] pipelines for
 
 1 - Publish staging image:
 
-*   Create a [trigger][trigger] to run the [staging pipeline](cloudbuild-staging.yaml) 
+*   Create a [trigger][trigger] to run the [staging pipeline](cloudbuild-staging.yaml)
 on each commit to branch called `staging`.
 *   Commit into to the `staging` branch and push to your own remote repository.
 *   Cloud Build automatically runs the [test_notebooks](test_notebooks)
@@ -33,12 +33,6 @@ using the `staging` environment.
     --location=<NOTEBOOK_LOCATION> \
     --environment=<IMAGE_NAME>.staging
 ```
-<<<<<<< HEAD
-gcloud notebooks instances create \
- --environment=YOUR_ENV_NAME \
- --environment-location=YOUR_ENV_LOCATION \
- --location=YOUR_LOCATION
-=======
 
 *   Access your instance from the [AI Platform Notebooks console][caip-console]
 
@@ -56,7 +50,6 @@ environment
   gcloud notebooks instances create <INSTANCE_NAME> \
     --location=<NOTEBOOK_LOCATION> \
     --environment=<IMAGE_NAME>.production
->>>>>>> 3b3c664391a2266f8a8dbddfef894effb5dfc51f
 ```
 
 *   Access your instance from the [AI Platform Notebooks console][caip-console]
