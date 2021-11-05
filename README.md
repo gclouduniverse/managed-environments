@@ -1,7 +1,7 @@
-# AI Platform Notebooks Upgrades and Dependency Management
+# Managing upgrades and dependencies for Vertex AI Workbench user-managed notebooks
 
 Sample [Cloud Build][cloud-build] pipelines for
-[AI Platform Notebooks][caip-notebooks] upgrades and dependency management.
+[Vertex AI Workbench user-managed notebooks][vaiw-notebooks] upgrades and dependency management.
 
 <!-- Add paragraph and link to best practices & process doc when available -->
 
@@ -34,7 +34,7 @@ using the `staging` environment.
     --environment=<IMAGE_NAME>.staging
 ```
 
-*   Access your instance from the [AI Platform Notebooks console][caip-console]
+*   Access your instance from the [Vertex AI Workbench console][vaiw-console]
 
 3 - Publish production image:
 
@@ -52,7 +52,7 @@ environment
     --environment=<IMAGE_NAME>.production
 ```
 
-*   Access your instance from the [AI Platform Notebooks console][caip-console]
+*   Access your instance from the [Vertex AI Workbench console][vaiw-console]
 
 Both pipelines use the original [commit SHA][sha] as the [Docker tag][docker-tag],
 representing the [image version ID][image-version] in [Container Registry][container-registry].
@@ -81,8 +81,8 @@ limitations under the License.
 *   [Code of conduct](code-of-conduct.md)
 
 <!-- LINKS: https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[caip-console]: https://console.cloud.google.com/ai-platform/notebooks/instances
-[caip-notebooks]: https://cloud.google.com/ai-platform-notebooks
+[vaiw-console]: https://console.cloud.google.com/vertex-ai/workbench/list/instances
+[vaiw-notebooks]: https://cloud.google.com/vertex-ai/docs/workbench/
 [cloud-build]: https://cloud.google.com/build
 [container-registry]: https://cloud.google.com/container-registry
 [dlc]: https://cloud.google.com/ai-platform/deep-learning-containers/docs/choosing-container
